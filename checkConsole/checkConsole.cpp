@@ -2,7 +2,6 @@
 //
 
 #include "stdafx.h"
-#include<iostream>
 #include<stdio.h>
 using namespace std;
 int count = 0;
@@ -14,7 +13,7 @@ int dfs(int c)
 {
 	if (c == 8)
 	{
-//		count++;
+		count++;
 		return 0;
 	}
 	for (int i = 0;i < 8;i++)
