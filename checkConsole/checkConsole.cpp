@@ -4,7 +4,7 @@
 #include "stdafx.h"
 #include<stdio.h>
 using namespace std;
-int count = 0;
+int num = 0;
 int h[8];
 int xie1[8];
 int xie2[8];
@@ -13,7 +13,7 @@ int dfs(int c)
 {
 	if (c == 8)
 	{
-		count++;
+		num++;
 		return 0;
 	}
 	for (int i = 0;i < 8;i++)
@@ -39,6 +39,8 @@ int dfs(int c)
 
 int main()
 {
+	dfs(0);
+	return num;
     return 0;
 }
 
