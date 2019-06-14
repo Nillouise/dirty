@@ -20,7 +20,7 @@ def convert_time(x):
     except:
         return None
         
-match['start_time].apply(convert_time)
+match['start_time'].apply(convert_time)
 data = match[blue_player_column + red_plyaer_column]
 data['start_time'] = match['start_time'].apply(convert_time)
 data['res'] = match.apply(lambda x: float(x['blue team2'].count('VICTORY')),axis=1)
@@ -59,7 +59,21 @@ X_train
 
 
 
-
+def chk_season_accurate(test_data,result):
+    for name,clf in clfs.items():
+        if hasattr(clf,"predict_proba"):
+                  prob_pos = clf.predict_proba(test_data)[:,1]
+        else:
+                  prob_pos = clf.decision_function(test_data)
+                  prob_pos = \
+                        (prob_pos - prob_pos.min()) / (prob_pos.max()-prob_pos.min())
+        acc_lr = brier_score_loss(result,prob_pos)
+        print(name+' :{}'.format(acc_lr))
+ 
+                  
+ test_data = pd.get_dummies(data[playerwinrate_column +['match name','res']])
+test_data = test_data[test_data['matchname_2013 LCS']==1]
+chk_season_accurate(test_data[test_data.columns.difference(['res'])],test_data['res])
 
 
 
